@@ -1,0 +1,6 @@
+api:
+  prefix: /api
+
+spring:
+  profiles:
+    default: local
