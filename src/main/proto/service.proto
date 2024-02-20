@@ -1,0 +1,22 @@
+syntax = "proto3"; //proto3을 사용함
+
+//option java_multiple_files = true;
+//option java_package = "org.chb.examples.lib";
+//option java_outer_classname = "HelloWorldProto";
+
+//service규정
+//service Simple {
+//  SayHello가 오면 HelloReply를 하겠다의 의미
+//  rpc SayHello (HelloRequest) returns (HelloReply) {
+//  }
+//}
+
+//요청 data 규약 : 문자열 name을 1로 사용하겠다.
+message HelloRequest {
+  string name = 1;
+}
+
+//응답 data 규약 : 문자열 message을 1로 사용하겠다.
+message HelloReply {
+  string message = 1;
+}
