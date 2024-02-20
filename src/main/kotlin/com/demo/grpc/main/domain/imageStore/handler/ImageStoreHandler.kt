@@ -1,9 +1,10 @@
-package com.demo.grpc.main.domain.handler
+package com.demo.grpc.main.domain.imageStore.handler
 
-import com.demo.grpc.main.domain.model.ImageStoreEntity
-import com.demo.grpc.main.domain.model.ImageStoreDto
-import com.demo.grpc.main.domain.model.ImageStoreVo
-import com.demo.grpc.main.domain.repository.ImageStoreRepository
+import com.demo.grpc.main.config.grpc.GreeterGrpcService
+import com.demo.grpc.main.domain.imageStore.model.ImageStoreEntity
+import com.demo.grpc.main.domain.imageStore.model.ImageStoreDto
+import com.demo.grpc.main.domain.imageStore.model.ImageStoreVo
+import com.demo.grpc.main.domain.imageStore.repository.ImageStoreRepository
 import kotlinx.coroutines.reactive.awaitSingle
 import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.server.ServerRequest
@@ -31,11 +32,12 @@ class ImageStoreHandler(
 		return ok().bodyValueAndAwait(imageStoreRepository.findById(id.toLong()).awaitSingle().toVO())
 	}
 
-	suspend fun insertImage(request: ServerRequest): ServerResponse {
+	suspend fun startGrpc(request: ServerRequest): ServerResponse {
+		GreeterGrpcService(9999).start()
 //		request.body().map { it.toImageStoreEntity() }
 //			.flatMap { imageStoreRepository.save(it) }
 //			.awaitSingle(
-		return ok().bodyValueAndAwait(imageStoreRepository.findAll().collectList().awaitSingle())
+		return ok().bodyValueAndAwait("grpc server started")
 	}
 
 	fun ImageStoreEntity.toVO(): ImageStoreVo {

@@ -27,9 +27,9 @@ repositories {
 	mavenCentral()
 }
 
-val grpcVersion = "3.19.4"
-val grpcKotlinVersion = "1.2.1"
-val grpcProtoVersion = "1.44.1"
+val grpcVersion = "3.25.3"
+val grpcKotlinVersion = "1.4.1"
+val grpcProtoVersion = "1.61.1"
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-webflux")
@@ -53,14 +53,17 @@ dependencies {
 	implementation("io.asyncer:r2dbc-mysql")
 
 	implementation("io.grpc:grpc-kotlin-stub:$grpcKotlinVersion")
+	implementation("io.grpc:grpc-stub:$grpcProtoVersion")
 	implementation("io.grpc:grpc-protobuf:$grpcProtoVersion")
+//	implementation("io.grpc:grpc-netty-shaded:$grpcProtoVersion")
 	implementation("com.google.protobuf:protobuf-kotlin:$grpcVersion")
+	implementation("net.devh:grpc-client-spring-boot-starter:2.15.0.RELEASE")
+
 }
 
 sourceSets{
 	main {
 		java {
-			srcDir("src/main/proto")
 			srcDir("build/generated/source/proto/main/java")
 			srcDir("build/generated/source/proto/main/kotlin")
 		}
@@ -76,7 +79,7 @@ protobuf {
 			artifact = "io.grpc:protoc-gen-grpc-java:$grpcProtoVersion"
 		}
 		id("grpckt") {
-			artifact = "io.grpc:protoc-gen-grpc-kotlin:$grpcKotlinVersion:jdk7@jar"
+			artifact = "io.grpc:protoc-gen-grpc-kotlin:$grpcKotlinVersion:jdk8@jar"
 		}
 	}
 	generateProtoTasks {

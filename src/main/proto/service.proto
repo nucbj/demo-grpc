@@ -1,22 +1,29 @@
-syntax = "proto3"; //proto3을 사용함
+syntax = "proto3";
 
-//option java_multiple_files = true;
-//option java_package = "org.chb.examples.lib";
-//option java_outer_classname = "HelloWorldProto";
+// com.er.kotlintoy.grpc.v1.BaseProtoService/retrieveBaseOnDB
+package com.demo.grpc.main;
 
-//service규정
-//service Simple {
-//  SayHello가 오면 HelloReply를 하겠다의 의미
-//  rpc SayHello (HelloRequest) returns (HelloReply) {
-//  }
-//}
+option java_multiple_files = true; // message와 enum, service 각 java 파일로 생성
+option java_outer_classname = "BaseProto"; // 생성될 자바코드의 클래스명 (camel case 변환)
 
-//요청 data 규약 : 문자열 name을 1로 사용하겠다.
-message HelloRequest {
-  string name = 1;
+// The BaseProtoService service definition.
+// Client에서 stub 객체로 호출할 서비스
+service BaseProtoService {
+  rpc retrieveBaseOnDB (BaseRequest) returns (BaseResponse);
 }
 
-//응답 data 규약 : 문자열 message을 1로 사용하겠다.
-message HelloReply {
-  string message = 1;
+// Request messagex
+message BaseRequest {
+  string baseId = 1;
+}
+
+// Response message
+message BaseResponse {
+  string query = 1;
+  int32 page_number = 2;
+  int32 result_per_page = 3;
+  string baseId = 4;
+  string baseName = 5;
+  string baseNumber = 6;
+
 }

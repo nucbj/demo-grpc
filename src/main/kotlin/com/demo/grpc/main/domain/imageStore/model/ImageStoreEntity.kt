@@ -1,4 +1,4 @@
-package com.demo.grpc.main.domain.model
+package com.demo.grpc.main.domain.imageStore.model
 
 import org.springframework.data.annotation.Id
 import org.springframework.data.relational.core.mapping.Table

@@ -1,4 +1,4 @@
-package com.demo.grpc.main.domain.model
+package com.demo.grpc.main.domain.imageStore.model
 
 import java.sql.Timestamp
 import java.time.ZonedDateTime

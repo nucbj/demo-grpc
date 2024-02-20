@@ -4,3 +4,5 @@ api:
 spring:
   profiles:
     default: local
+  main:
+    allow-bean-definition-overriding: true
