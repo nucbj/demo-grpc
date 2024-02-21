@@ -7,17 +7,18 @@ import com.demo.grpc.main.domain.imageStore.handler.ImageStoreHandler
 import com.demo.grpc.main.domain.imageStore.repository.ImageStoreRepository
 import io.grpc.Server
 import io.grpc.ServerBuilder
+import org.springframework.beans.factory.annotation.Autowired
+import reactor.core.publisher.Mono
 
 class GreeterGrpcService(
-	private val port: Int
+	private val port: Int,
+	private val imageStoreRepository: ImageStoreRepository
 ) {
-
-	private lateinit var imageStoreRepository: ImageStoreRepository
 
 	val server: Server =
 		ServerBuilder
 			.forPort(port)
-			.addService(HelloWorldService())
+			.addService(HelloWorldService(imageStoreRepository))
 			.build()
 
 	fun start() {
@@ -40,12 +41,16 @@ class GreeterGrpcService(
 		server.awaitTermination()
 	}
 
-	internal class HelloWorldService : BaseProtoServiceGrpcKt.BaseProtoServiceCoroutineImplBase() {
+	internal class HelloWorldService(
+		private val imageStoreRepository: ImageStoreRepository
+	) : BaseProtoServiceGrpcKt.BaseProtoServiceCoroutineImplBase() {
 		override suspend fun retrieveBaseOnDB(request: BaseRequest): BaseResponse {
 			println(request.baseId)
+//			var imageUrl : String = imageStoreRepository.findById(1L).map { it.imageUrl }
+			var imageUrl  = imageStoreRepository.findById(1L).map { it.imageUrl }
 			return BaseResponse.newBuilder()
 				.setBaseId("baseId")
-				.setBaseName("baseName")
+				.setBaseName(imageUrl.block())
 				.setBaseNumber("BaseNumber")
 				.build()
 		}

@@ -33,7 +33,7 @@ class ImageStoreHandler(
 	}
 
 	suspend fun startGrpc(request: ServerRequest): ServerResponse {
-		GreeterGrpcService(9999).start()
+		GreeterGrpcService(9999, imageStoreRepository).start()
 //		request.body().map { it.toImageStoreEntity() }
 //			.flatMap { imageStoreRepository.save(it) }
 //			.awaitSingle(
