@@ -2,8 +2,8 @@ apiVersion: skaffold/v2beta1
 kind: Config
 build:
   artifacts:
-  - image: app-example
-    jib: {}
+    - image: app-example
+      jib: {}
   local: {}
 
 deploy:

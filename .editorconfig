@@ -1,0 +1,54 @@
+root = true
+
+# indent_style = space: 들여쓰기에 공백을 사용
+# indent_size = 4: 들여쓰기 크기를 4로 설정
+# continuation_indent_size = 8: 줄이 계속될 때 들여쓰기 크기를 8로 설정
+# trim_trailing_whitespace = true: 라인 끝의 공백을 제거
+# insert_final_newline = true: 파일 끝에 새로운 라인을 추가
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_size = 2
+indent_style = space
+insert_final_newline = true
+trim_trailing_whitespace = true
+tab_width = 2
+continuation_indent_size = 4
+max_line_length = 120
+
+[*.java]
+indent_style = tab
+indent_size = 4
+
+# Kotlin files
+[*.kt]
+indent_style = tab
+indent_size = 4
+continuation_indent_size = 4
+
+# Maximum line length
+max_line_length = 120
+
+# Naming conventions (example: camelCase)
+[*.kt]
+# Change the regex pattern based on your naming convention
+# This example enforces camelCase for variable and function names
+regex = (?i)(?<!^class\s)(?<!^interface\s)(?<!^enum\s)(?<!^object\s)[a-z][a-zA-Z0-9]*
+
+# Import ordering (example: alphabetical)
+[*.kt]
+# Adjust as needed for your preferred import order
+order_imports = true
+import_layout = idea
+
+# Blank line before the first declaration in a block
+[*.kt]
+blank_lines_before_rbrace = 1
+
+# Comment style
+[*.kt]
+# Adjust as needed for your preferred comment style
+# This example enforces KDoc style for comments
+# Note: Not all IDEs respect this configuration
+kdoc_comments = true
