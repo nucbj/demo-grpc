@@ -15,7 +15,9 @@ class AuthRouter(
 	fun authRoute() = coRouter {
 		accept(MediaType.APPLICATION_JSON).nest {
 			"auth".nest {
-				GET("", authHandler::getMember)
+				GET("", authHandler::getToken)
+				GET("check", authHandler::checkToken)
+				PATCH("", authHandler::refreshToken)
 			}
 		}
 	}
