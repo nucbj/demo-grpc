@@ -32,7 +32,9 @@ class FilterChain {
 			.logout { it.disable() }
 			.authorizeExchange {
 				it
-					.pathMatchers("/api/**").authenticated()
+//					.pathMatchers("/api/**").permitAll()
+//					.pathMatchers("/api/**").authenticated()
+//					.pathMatchers("/api/auth").permitAll()
 					.anyExchange().permitAll()
 
 			}
