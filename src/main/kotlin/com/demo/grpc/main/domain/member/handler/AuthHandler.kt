@@ -2,6 +2,7 @@ package com.demo.grpc.main.domain.member.handler
 
 import com.demo.grpc.main.config.security.JwtSupport
 import com.demo.grpc.main.domain.member.repository.MemberRepository
+import com.demo.grpc.main.event.EventPublisher
 import io.micrometer.common.util.StringUtils
 import kotlinx.coroutines.reactive.awaitFirstOrElse
 import kotlinx.coroutines.reactive.awaitSingle
@@ -13,6 +14,7 @@ import org.springframework.web.reactive.function.server.bodyValueAndAwait
 @Service
 class AuthHandler(
 	private val jwtSupport: JwtSupport,
+	private val eventPublisher: EventPublisher,
 	private val memberRepository: MemberRepository
 ) {
 
@@ -23,6 +25,10 @@ class AuthHandler(
 			.awaitFirstOrElse { throw IllegalArgumentException("name is not found") }
 			.email
 		val token = jwtSupport.generate(email.toString())
+
+		// e.g. Event triggered after registration
+		eventPublisher.publishCustomEvent(true)
+		eventPublisher.publishDefaultEvent("default event")
 		if (StringUtils.isEmpty(name.orElse(null))) {
 			throw IllegalArgumentException("name is required")
 		} else {

@@ -1,5 +1,6 @@
 package com.demo.grpc.main._router
 
+import com.demo.grpc.main.config.filter.RequestLoggingFilter
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
