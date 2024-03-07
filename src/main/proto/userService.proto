@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option java_outer_classname = "MyServiceProto"; // 생성될 자바코드의 클래스명 (camel case 변환)
+option java_multiple_files = true; // message와 enum, service 각 java 파일로 생성
+
+service UserService {
+  rpc findUser (UserServiceRequest) returns (UserServiceResponse);
+}
+
+message UserServiceRequest {
+  string name = 1;
+}
+
+message UserServiceResponse {
+  int64 seq = 1;
+  string name = 2;
+  string type = 3;
+  int32 gender = 4;
+  string status = 5;
+  string created_at = 6;
+}

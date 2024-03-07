@@ -1,10 +1,7 @@
 syntax = "proto3";
 
-// com.er.kotlintoy.grpc.v1.BaseProtoService/retrieveBaseOnDB
-package com.demo.grpc.main;
-
-option java_multiple_files = true; // message와 enum, service 각 java 파일로 생성
 option java_outer_classname = "BaseProto"; // 생성될 자바코드의 클래스명 (camel case 변환)
+option java_multiple_files = true; // message와 enum, service 각 java 파일로 생성
 
 // The BaseProtoService service definition.
 // Client에서 stub 객체로 호출할 서비스
@@ -25,5 +22,4 @@ message BaseResponse {
   string baseId = 4;
   string baseName = 5;
   string baseNumber = 6;
-
 }

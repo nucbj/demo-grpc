@@ -1,6 +1,6 @@
 package com.demo.grpc.main.domain.imageStore.handler
 
-import com.demo.grpc.main.config.grpc.GreeterGrpcService
+//import com.demo.grpc.main.config.grpc.GreeterGrpcService
 import com.demo.grpc.main.domain.imageStore.model.ImageStoreEntity
 import com.demo.grpc.main.domain.imageStore.model.ImageStoreDto
 import com.demo.grpc.main.domain.imageStore.model.ImageStoreVo
@@ -20,20 +20,20 @@ class ImageStoreHandler(
 	suspend fun findImages(request: ServerRequest): ServerResponse {
 		val count = imageStoreRepository.count().awaitSingle()
 		val images = imageStoreRepository.findAll().collectList().awaitSingle()
-		val imageVos = images.map { it.toImageStoreVo()}
+		val imageVos = images.map { it.toImageStoreVo() }
 		return ok().bodyValueAndAwait(ImageStoreDto(count, imageVos))
 	}
 
 	suspend fun findImage(request: ServerRequest): ServerResponse {
 		var id = request.pathVariable("id");
-		if(id.isNullOrEmpty()) {
+		if (id.isNullOrEmpty()) {
 			throw IllegalArgumentException("id is required")
 		}
 		return ok().bodyValueAndAwait(imageStoreRepository.findById(id.toLong()).awaitSingle().toVO())
 	}
 
 	suspend fun startGrpc(request: ServerRequest): ServerResponse {
-		GreeterGrpcService(9999, imageStoreRepository).start()
+//		GreeterGrpcService(9999, imageStoreRepository).start()
 //		request.body().map { it.toImageStoreEntity() }
 //			.flatMap { imageStoreRepository.save(it) }
 //			.awaitSingle(
