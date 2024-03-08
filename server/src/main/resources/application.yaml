@@ -1,0 +1,19 @@
+api:
+  prefix: /api
+
+spring:
+  profiles:
+    default: local
+  main:
+    allow-bean-definition-overriding: true
+
+grpc:
+  server:
+    port: 9091
+    shutdown-grace-period: 10000
+    enable-keep-alive: false
+
+logging:
+  level:
+    io.r2dbc.postgresql.QUERY: DEBUG # for queries
+    io.r2dbc.postgresql.PARAM: DEBUG # for parameters

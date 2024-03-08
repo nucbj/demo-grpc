@@ -55,7 +55,7 @@ dependencies {
   implementation("io.grpc:grpc-kotlin-stub:$grpcKotlinVersion")
   implementation("io.grpc:grpc-stub:$grpcProtoVersion")
   implementation("io.grpc:grpc-protobuf:$grpcProtoVersion")
-//	implementation("io.grpc:grpc-netty-shaded:$grpcProtoVersion")
+  implementation("io.grpc:grpc-netty-shaded:$grpcProtoVersion")
   implementation("com.google.protobuf:protobuf-kotlin:$grpcVersion")
   implementation("net.devh:grpc-client-spring-boot-starter:2.15.0.RELEASE")
 
